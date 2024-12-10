@@ -6,5 +6,9 @@ Rails.application.routes.draw do
   post("/update_user/:username", { :controller => "users", :action => "update" })
 
   get("/photos", {:controller => "photos", :action => "index"})
-  get("/photos/:photo_id", {:controller => "photos", :action => "index"})
+  get("/photos/:photo_id", {:controller => "photos", :action => "show"})
+  post("/add_photo", {:controller => "photos", :action => "add_photo"})
+  post("/add_comment", {:controller => "photos", :action => "add_comment"})
+  post("/update_photo/:id", { :controller => "photos", :action => "update" })
+  post("/delete_photo/:id", { :controller => "photos", :action => "delete" })
 end
