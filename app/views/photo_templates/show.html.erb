@@ -1,0 +1,128 @@
+<h1>
+  Photo Details
+</h1>
+
+<dl>
+  <dt>
+    Image
+  </dt>
+  <dd>
+    <img src="<%= @photo.image %>">
+  </dd>
+  <dt>
+    Caption
+  </dt>
+  <dd>
+    <%= @photo.caption %>
+  </dd>
+  <dt>
+    Owner
+  </dt>
+  <dd>
+    <%= @photo.poster.username %>
+  </dd>
+  <dt>
+    Posted
+  </dt>
+  <dd>
+    <%= @photo.created_at %>
+  </dd>
+  <dt>
+    Edit photo
+  </dt>
+  <dd>
+    <form action="/update_photo/<%= @photo.id %>" method="post">
+      <div>
+        <label for="new_image">
+          Image
+        </label>
+
+        <input type="hidden" id="userid" name="userid" value="<%= @photo.id %>">
+        <input type="text" id="new_image" name="new_image" value="<%= @photo.image %>">
+
+        <label for="new_caption">
+          Caption
+        </label>
+
+          <input type="text" id="new_caption" name="new_caption" value="<%= @photo.caption %>">
+        
+        <button>
+          Update photo
+        </button>
+      </div>
+    </form>
+  </dd>
+  <dl>
+    Delete photo
+  </dl>
+  <dd>
+    <a href="/delete_photo/<%= @photo.id %>">Delete this photo</a>
+  </dd>
+</dl>
+
+<h2>
+  Comments
+</h2>
+
+<table>
+  <tr>
+    <th>
+      Commenter
+    </th>
+
+    <th>
+      Comment
+    </th>
+
+    <th>
+      Posted
+    </th>
+  </tr>
+
+  <% @photo.comments.all.each do |comment| %>
+    <tr>
+      <td>
+        <%= comment.commenter.username %>
+      </td>
+
+      <td>
+        <%= comment.body %>
+      </td>
+
+      <td>
+        <%= comment.created_at %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>
+  Add a new comment
+</h3>
+
+<form action="/insert_comment" method="post">
+  <div>
+    <label for="photo_id">
+      Photo ID
+    </label>
+
+    <input type="text" id="photo_id" name="photo_id" placeholder="<%= @photo.id %>">
+
+    <label for="author_id">
+      Author ID
+    </label>
+
+    <input type="text" id="author_id" name="author_id" placeholder="Enter your author ID">
+
+    <label for="comment">
+      Comment
+    </label>
+
+    <input type="text" id="comment" name="comment" placeholder="Enter a comment...">
+
+    <button>
+      Add comment
+    </button>
+
+  </div>
+</form>
