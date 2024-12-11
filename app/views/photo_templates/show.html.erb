@@ -44,7 +44,9 @@
           Caption
         </label>
 
-          <input type="text" id="new_caption" name="new_caption" value="<%= @photo.caption %>">
+          <textarea type="text" id="new_caption" name="new_caption">
+            <%= @photo.caption %>
+          </textarea>
         
         <button>
           Update photo
@@ -118,7 +120,8 @@
       Comment
     </label>
 
-    <input type="text" id="comment" name="comment" placeholder="Enter a comment...">
+    <textarea type="text" id="comment" name="comment" placeholder="Enter a comment...">
+    </textarea>
 
     <button>
       Add comment
