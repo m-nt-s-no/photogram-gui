@@ -6,7 +6,7 @@ class PhotosController < ApplicationController
 
   def show
     photo_id = params.fetch("photo_id")
-    @photo = Photo.where({:id => photo_id }).at(0)
+    @photo = Photo.find(photo_id)
     render({ :template => "photo_templates/show" })
   end
 
@@ -40,7 +40,7 @@ class PhotosController < ApplicationController
 
     if @new_photo.valid?
       @new_photo.save
-      redirect_to("/photos/:photo_id")
+      redirect_to("/photos/#{@new_photo.id}")
     else
       redirect_to("/photos")
     end
@@ -59,6 +59,6 @@ class PhotosController < ApplicationController
       the_photo.save
     end
     
-    redirect_to("/photos/:photo_id")
+    redirect_to("/photos/#{@new_comment.photo_id}")
   end
 end
