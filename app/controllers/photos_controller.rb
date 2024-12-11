@@ -59,6 +59,6 @@ class PhotosController < ApplicationController
       the_photo.save
     end
     
-    redirect_to("/photos/#{@new_comment.photo_id}")
+    redirect_to("/photos/#{params.fetch("photo_id").to_i}")
   end
 end
