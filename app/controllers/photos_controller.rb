@@ -40,7 +40,7 @@ class PhotosController < ApplicationController
 
     if @new_photo.valid?
       @new_photo.save
-      redirect_to("/users/#{@new_photo.id}")
+      redirect_to("/photos/:photo_id")
     else
       redirect_to("/photos")
     end
@@ -59,6 +59,6 @@ class PhotosController < ApplicationController
       the_photo.save
     end
     
-    redirect_to("/photos/#{@new_comment.photo_id}")
+    redirect_to("/photos/:photo_id")
   end
 end
